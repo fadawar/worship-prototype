@@ -17,13 +17,13 @@ Rectangle {
 
     ListView {
         id: songListView
-        //model: ["Enterprise", "Columbia", "Challenger", "Discovery", "Endeavour", "Atlantis"]
-        spacing: 5
         anchors.fill: parent
+        spacing: 2
+        clip: true
 
         delegate: Rectangle {
             height: 25
-            width: 50
+            width: 75
             Text { text: index + ' ' + modelData }
 
             MouseArea {
