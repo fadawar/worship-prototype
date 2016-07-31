@@ -1,11 +1,10 @@
-from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import QUrl, QRect
 from PyQt5.QtGui import QGuiApplication
-from PyQt5.QtQml import QQmlComponent, QQmlEngine
 from PyQt5.QtQuick import QQuickView
 
 
-def suc():
-    print("Ide to")
+def suc(index):
+    print("Ide to {}".format(index))
 
 if __name__ == '__main__':
     import os
@@ -21,31 +20,14 @@ if __name__ == '__main__':
         )
     )
 
-    engine = view.engine()
-    component = QQmlComponent(engine, QUrl.fromLocalFile(
-            os.path.join(os.path.dirname(__file__), 'sub.qml')
-        ),
-        QQmlComponent.PreferSynchronous)
-    component.create()
-
-    # component.setParent(view.rootObject())
-    # component.setParentItem(view.rootObject())
-
-    print(component.property("width"))
-
-    # view.setProperty("control", "sub.qml")
-
     view.show()
 
     root = view.rootObject()
 
+    dataList = ["Item 1", "Item 2", "Item 3", "Item 4"]
+
     rect = root.createSpriteObjects()
     rect.clicked.connect(suc)
-
-    # root.
-
-    # root.setProperty("control", component.rootObject())
-
-    # view.control = component
+    rect.setProperty('songListModel', dataList)
 
     sys.exit(app.exec_())

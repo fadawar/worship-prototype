@@ -3,24 +3,29 @@ import QtQuick 2.0
 Rectangle {
     id: appWindow
     color: "blue"
-    property alias control : pageLoader.source
-    width: 500; height: 200
+    width: 500; height: 500
 
     function createSpriteObjects() {
         var component = Qt.createComponent("sub.qml");
-        var sprite = component.createObject(appWindow, {"x": 100, "y": 100});
+        var sprite = component.createObject(appWindow);
+        songList.sourceComponent = component;
 
         if (sprite == null) {
             // Error Handling
             console.log("Error creating object");
         } else {
-            return sprite;
+            return songList.item;
         }
     }
 
-    Loader {
-        id: pageLoader
-        //source: "sub.qml"
+    Rectangle {
+        x: 100
+        y: 10
+        color: "green"
+        width: 200; height: 200;
+        Loader {
+            id: songList
+        }
     }
 
     Text {
