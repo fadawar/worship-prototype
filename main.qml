@@ -1,30 +1,50 @@
 import QtQuick 2.0
+import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.2
+import QtMultimedia 5.0
 
 Item {
     id: root
     width: 500; height: 500
 
-    Rectangle {
-        x: 100
-        y: 10
-        color: "green"
-        width: 200; height: 200;
-        Loader {
-            id: songsList
+    SplitView {
+        orientation: Qt.Horizontal
+        anchors.fill: parent
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.minimumWidth: 100
+            width: parent.width * 0.5
+            color: "#6FA545"
+
+            Loader {
+                id: songsList
+                anchors.fill: parent
+            }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.minimumWidth: 100
+            width: parent.width * 0.5
+            color: "#C9E5AB"
+
+            Loader {
+                id: previewScreen
+                anchors.fill: parent
+            }
         }
     }
 
-    Text {
-        anchors { bottom: parent.bottom; horizontalCenter: parent.horizontalCenter; bottomMargin: 20 }
-        text: "Hello world"
-    }
-
-    function createObjects(qmlPath) {
+    function createObjects(qmlPath, loaderName) {
         var component = Qt.createComponent(qmlPath);
+        var target = eval(loaderName)
 
         if (component.status === Component.Ready) {
-            songsList.sourceComponent = component;
-            return songsList.item;
+            target.sourceComponent = component;
+            return target.item;
         } else if (component.status === Component.Error) {
             console.log("Error loading component:", component.errorString());
         } else {

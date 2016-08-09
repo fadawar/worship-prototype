@@ -11,7 +11,7 @@ class SongsListController:
         self.wire_gui(root_item)
 
     def wire_gui(self, root_item: QQuickItem):
-        rect = root_item.createObjects(os.path.join(os.path.dirname(__file__), 'view.qml'))
+        rect = root_item.createObjects(os.path.join(os.path.dirname(__file__), 'view.qml'), 'songsList')
         rect.clicked.connect(self.show_song)
         rect.setProperty('songListModel', self.model.songs)
 
