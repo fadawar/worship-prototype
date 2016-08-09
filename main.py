@@ -5,6 +5,7 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
 
+from apps.previewscreen.controller import PreviewScreenController
 from apps.songslist.model import SongsListModel
 from apps.songslist.controller import SongsListController
 
@@ -20,6 +21,9 @@ if __name__ == '__main__':
     view.show()
 
     root = view.rootObject()
-    con = SongsListController(SongsListModel(), root)
+    modules = [
+        SongsListController(SongsListModel(), root),
+        PreviewScreenController(root),
+    ]
 
     sys.exit(app.exec_())
