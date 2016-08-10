@@ -32,7 +32,9 @@ Item {
 
             Loader {
                 id: previewScreen
-                anchors.fill: parent
+                anchors.centerIn: parent
+                width: 400
+                height: 300
             }
         }
     }
