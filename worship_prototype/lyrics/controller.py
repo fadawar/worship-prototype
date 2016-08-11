@@ -2,12 +2,12 @@ import os
 
 from PyQt5.QtQuick import QQuickItem
 
-from apps.previewscreen.controller import PreviewScreen
+from ..screen.screen import Screen
 from .model import SongsListModel
 
 
-class SongsListController:
-    def __init__(self, model: SongsListModel, root_item: QQuickItem, preview_screen: PreviewScreen):
+class LyricsModule:
+    def __init__(self, model: SongsListModel, root_item: QQuickItem, preview_screen: Screen):
         self.model = model
         self.preview_screen = preview_screen
         self.wire_gui(root_item)
