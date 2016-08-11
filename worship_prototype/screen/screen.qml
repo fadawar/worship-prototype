@@ -11,7 +11,6 @@ Rectangle {
 
     MediaPlayer {
         id: player
-        source: "../../echo.mp4"
         autoPlay: true
         muted: true
         loops: MediaPlayer.Infinite
@@ -69,5 +68,11 @@ Rectangle {
 
     function showText(text) {
         lyrics.text = text;
+    }
+
+    function playVideo(mediaUrl) {
+        player.stop();
+        player.source = mediaUrl;
+        player.play();
     }
 }

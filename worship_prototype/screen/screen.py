@@ -1,7 +1,10 @@
 import os
 from abc import ABCMeta, abstractmethod
 
+from PyQt5.QtCore import QUrl
 from PyQt5.QtQuick import QQuickItem
+
+from ..background import Background
 
 
 class Screen(metaclass=ABCMeta):
@@ -30,5 +33,5 @@ class DefaultScreen(Screen):
     def show_text(self, text: str):
         self.gui.showText(text)
 
-    def show_background(self, background):
-        pass
+    def show_background(self, background: Background):
+        self.gui.playVideo(QUrl.fromLocalFile(background.file_url()))
