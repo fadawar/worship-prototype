@@ -20,7 +20,7 @@ Rectangle {
             delegate: Rectangle {
                 height: 25
                 width: 75
-                Text { text: index + ' ' + modelData }
+                Text { text: index + ' ' + title }
 
                 MouseArea {
                     anchors.fill: parent

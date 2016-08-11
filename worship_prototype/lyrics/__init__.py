@@ -1,2 +1,2 @@
-from .controller import *
+from .module import *
 from .model import *

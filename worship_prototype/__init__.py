@@ -6,7 +6,7 @@ from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
 
 from .background import VideoBackground
-from .lyrics import LyricsModule, SongsListModel
+from .lyrics import LyricsModule, SongsList
 from .screen import DefaultScreen
 
 
@@ -26,7 +26,7 @@ def run_app():
     # preview_live = DefaultScreen()
     # live = DefaultScreen()
     modules = [
-        LyricsModule(SongsListModel(), root, preview),
+        LyricsModule(SongsList(), root, preview),
     ]
 
     sys.exit(app.exec_())
