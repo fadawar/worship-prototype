@@ -7,13 +7,7 @@ Rectangle {
     id: root
     focus: true
     color: "transparent"
-    //width: 400
-    //height: 300
     border.width: 2
-
-    Keys.onSpacePressed: player.playbackState == MediaPlayer.PlayingState ? player.pause() : player.play()
-    Keys.onLeftPressed: player.seek(player.position - 5000)
-    Keys.onRightPressed: player.seek(player.position + 5000)
 
     MediaPlayer {
         id: player
@@ -73,10 +67,7 @@ Rectangle {
         color: "transparent"
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            player.play()
-        }
+    function showText(text) {
+        lyrics.text = text;
     }
 }

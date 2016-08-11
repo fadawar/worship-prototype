@@ -41,7 +41,7 @@ Item {
 
     function createObjects(qmlPath, loaderName) {
         var component = Qt.createComponent(qmlPath);
-        var target = eval(loaderName)
+        var target = eval(loaderName);
 
         if (component.status === Component.Ready) {
             target.sourceComponent = component;
