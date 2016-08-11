@@ -26,8 +26,6 @@ Rectangle {
     Text {
         id: lyrics
         anchors.centerIn: root
-        text: "Lorem ipsum dolor sit amet, an vix mediocrem forensibus, pri albucius pericula reprimique id. Zril molestie quaestio cum id, ad vivendum volutpat elaboraret pro, sea id esse solum. Oporteat perfecto id cum, id vix eligendi facilisi. Vis duis patrioque ad, soleat primis sadipscing te has, ipsum tollit ancillae sea at. Natum possim nec te, stet everti necessitatibus qui ei. Vim prodesset abhorreant ut, sit novum integre ex."
-        //text: "Hello world"
         wrapMode: Text.Wrap
         color: "white"
         fontSizeMode: Text.Fit
