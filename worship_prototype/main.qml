@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.2
 
 Item {
     id: root
-    width: 500; height: 500
+    width: 900; height: 500
 
     SplitView {
         orientation: Qt.Horizontal

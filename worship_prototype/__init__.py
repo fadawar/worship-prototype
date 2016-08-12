@@ -30,6 +30,5 @@ def run_app():
     modules = [
         LyricsModule(songs, root, preview),
     ]
-    songs.load_songs_from(SONGS_DIR)
 
     sys.exit(app.exec_())
