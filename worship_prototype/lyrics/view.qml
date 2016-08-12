@@ -19,7 +19,7 @@ Rectangle {
 
             delegate: Rectangle {
                 height: 25
-                width: 75
+                width: parent.width
                 Text { text: index + ' ' + title }
 
                 MouseArea {
