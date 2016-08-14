@@ -24,11 +24,10 @@ def run_app():
     preview = DefaultScreen()
     preview.wire_to_gui(root, 'previewScreen')
     preview.show_background(VideoBackground(os.path.join(os.path.dirname(__file__), '../echo.mp4')))
-    songs = SongsList()
     # preview_live = DefaultScreen()
     # live = DefaultScreen()
     modules = [
-        LyricsModule(songs, root, preview),
+        LyricsModule(SongsList(), root, 'lyricsModule', preview),
     ]
 
     sys.exit(app.exec_())

@@ -22,7 +22,7 @@ Item {
                 color: "#6FA545"
 
                 Loader {
-                    id: songsList
+                    id: lyricsModule
                     anchors.fill: parent
                 }
             }

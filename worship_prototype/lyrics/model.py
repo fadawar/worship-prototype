@@ -49,3 +49,23 @@ class LoadSongsThread(QThread):
         files = glob.glob("{}*.xml".format(directory))
         for file in files:
             self.songs.append(Song(file))
+
+
+class SongDetail(QAbstractListModel):
+    VerseRole = Qt.UserRole + 1
+    _roles = {VerseRole: b'verse'}
+
+    def __init__(self, song: Song):
+        super().__init__()
+        self.song = song
+
+    def rowCount(self, parent=None, *args, **kwargs):
+        return len(self.song.verses)
+
+    def data(self, index, role=None):
+        if role == self.VerseRole:
+            return str(self.song.verses[index.row()])
+        return QVariant()
+
+    def roleNames(self):
+        return self._roles
