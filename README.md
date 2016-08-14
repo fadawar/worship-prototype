@@ -10,5 +10,5 @@ docker run -it \
     -u myusername \
     --group-add audio \
     --device /dev/snd \
-    fadawar/docker-pyqt5-qml-qtmultimedia python3 /app/main.py
+    fadawar/docker-pyqt5-qml-qtmultimedia python3 /app/run.py
 ```
