@@ -10,31 +10,42 @@ Item {
         orientation: Qt.Horizontal
         anchors.fill: parent
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.minimumWidth: 100
-            width: parent.width * 0.5
-            color: "#6FA545"
+        // Lyrics & backgrounds
+        SplitView {
+            orientation: Qt.Vertical
+            width: parent.width * (2/3)
 
-            Loader {
-                id: songsList
-                anchors.fill: parent
+            // Lyrics
+            Rectangle {
+                width: parent.width
+                height: parent.height * 0.5
+                color: "#6FA545"
+
+                Loader {
+                    id: songsList
+                    anchors.fill: parent
+                }
+            }
+
+            // Backgrounds
+            Rectangle {
+                width: parent.width
+                height: parent.height * 0.5
+                color: "#d8dd39"
             }
         }
 
+        // Screens
         Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
             Layout.minimumWidth: 100
-            width: parent.width * 0.5
+            width: parent.width * (1/3)
             color: "#C9E5AB"
 
             Loader {
                 id: previewScreen
                 anchors.centerIn: parent
-                width: 400
-                height: 300
+                width: 250     // ratio 4:3
+                height: width * 0.75
             }
         }
     }
