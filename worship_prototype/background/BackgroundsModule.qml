@@ -13,20 +13,12 @@ SplitView {
         id: bgTree
         width: parent.width * 0.5
         height: parent.height
-        //anchors.fill: parent
-        //anchors.margins: 2 * 12 + row.height
-        //selection: sel
 
         TableViewColumn {
-            title: "Backgrounds directories"
+            title: "Directories with backgrounds"
             role: "display"
             resizable: true
         }
-
-//        onActivated : {
-//            var url = fileSystemModel.data(index, FileSystemModel.UrlStringRole)
-//            Qt.openUrlExternally(url)
-//        }
     }
 
     Rectangle {
