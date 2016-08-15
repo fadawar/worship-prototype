@@ -9,6 +9,7 @@ SplitView {
     property alias bgTreeModel: bgTree.model
     property alias bgThumbsModel: bgThumbs.model
     signal dirActivated(var item)
+    signal selectedBackground(int index)
 
     TreeView {
         id: bgTree
@@ -60,6 +61,11 @@ SplitView {
                         elide: Text.ElideRight
                         font.pixelSize: 10
                         text: title
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: selectedBackground(index)
                     }
                 }
             }

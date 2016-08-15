@@ -79,3 +79,6 @@ class BackgroundsModel(QAbstractListModel):
 
     def roleNames(self):
         return self._roles
+
+    def background_by(self, index) -> Background:
+        return self._backgrounds[index]

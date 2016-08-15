@@ -34,4 +34,7 @@ class DefaultScreen(Screen):
         self.gui.showText(text)
 
     def show_background(self, background: Background):
-        self.gui.playVideo(QUrl.fromLocalFile(background.file_url()))
+        if background.is_video():
+            self.gui.showVideoBackground(QUrl.fromLocalFile(background.file_url()))
+        elif background.is_image():
+            self.gui.showImageBackground(background.file_url())

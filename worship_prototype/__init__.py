@@ -28,7 +28,7 @@ def run_app():
     # live = DefaultScreen()
     modules = [
         LyricsModule(SongsList(), root, 'lyricsModule', preview),
-        BackgroundsModule(root, 'backgroundsModule', DirModel(BG_DIR), BackgroundsModel()),
+        BackgroundsModule(root, 'backgroundsModule', DirModel(BG_DIR), BackgroundsModel(), preview),
     ]
 
     sys.exit(app.exec_())
