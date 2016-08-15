@@ -31,7 +31,12 @@ Item {
             Rectangle {
                 width: parent.width
                 height: parent.height * 0.5
-                color: "#d8dd39"
+                color: "#d8ddff"
+
+                Loader {
+                    id: backgroundsModule
+                    anchors.fill: parent
+                }
             }
         }
 

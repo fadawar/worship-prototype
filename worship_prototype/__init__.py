@@ -5,10 +5,10 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
 
-from .background import VideoBackground
+from .background import VideoBackground, BackgroundsModule, DirModel
 from .lyrics import LyricsModule, SongsList
 from .screen import DefaultScreen
-from .config import SONGS_DIR
+from .config import SONGS_DIR, BG_DIR
 
 
 def run_app():
@@ -28,6 +28,7 @@ def run_app():
     # live = DefaultScreen()
     modules = [
         LyricsModule(SongsList(), root, 'lyricsModule', preview),
+        BackgroundsModule(root, 'backgroundsModule', DirModel(BG_DIR)),
     ]
 
     sys.exit(app.exec_())
