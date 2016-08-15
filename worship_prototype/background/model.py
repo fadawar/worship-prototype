@@ -1,5 +1,14 @@
+import os
+import re
+from typing import List
+import glob
+
 from PyQt5.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt
-from ..common import DefaultDirectory, CachedDirectory
+from PyQt5.QtCore import QAbstractListModel
+
+from ..common import Directory, DefaultDirectory, CachedDirectory
+from ..config import IMAGE_PATTERN
+from .background import Background, ImageBackground
 
 
 class DirModel(QAbstractItemModel):
@@ -35,3 +44,38 @@ class DirModel(QAbstractItemModel):
         if directory.parent() is None:
             return QModelIndex()
         return self.createIndex(directory.parent().row(), 0, directory.parent())
+
+
+class BackgroundsModel(QAbstractListModel):
+    TitleRole = Qt.UserRole + 1
+    ThumbnailRole = Qt.UserRole + 2
+    _roles = {TitleRole: b'title', ThumbnailRole: b'thumbnail'}
+
+    def __init__(self):
+        super().__init__()
+        self._backgrounds = []
+
+    def find_backgrounds_in(self, directory: Directory) -> List[Background]:
+        self.beginResetModel()
+        self._backgrounds = [ImageBackground(img) for img in self._find_images_in(directory)]
+        self.endResetModel()
+
+    def _find_images_in(self, directory: Directory):
+        images = []
+        for x in os.listdir(directory.path()):
+            if re.match(IMAGE_PATTERN, x):
+                images.append(os.path.join(directory.path(), x))
+        return images
+
+    def rowCount(self, parent=None, *args, **kwargs):
+        return len(self._backgrounds)
+
+    def data(self, index, role=None):
+        if role == self.TitleRole:
+            return self._backgrounds[index.row()].name()
+        elif role == self.ThumbnailRole:
+            return self._backgrounds[index.row()].thumbnail().file_path()
+        return QVariant()
+
+    def roleNames(self):
+        return self._roles

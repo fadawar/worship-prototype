@@ -7,7 +7,8 @@ SplitView {
     anchors.fill: parent
 
     property alias bgTreeModel: bgTree.model
-    property alias rootPathIndex: bgTree.rootIndex
+    property alias bgThumbsModel: bgThumbs.model
+    signal dirActivated(var item)
 
     TreeView {
         id: bgTree
@@ -19,6 +20,8 @@ SplitView {
             role: "display"
             resizable: true
         }
+
+        onActivated: root.dirActivated(index)
     }
 
     Rectangle {
@@ -32,21 +35,31 @@ SplitView {
             anchors.margins: 5
 
             clip: true
-            model: 100
-            cellWidth: 83
-            cellHeight: 63
+            cellWidth: 86
+            cellHeight: 76
 
             delegate: Item {
                 width: bgThumbs.cellWidth
                 height: bgThumbs.cellHeight
 
-                Rectangle {
+                Item {
                     anchors.fill: parent
                     anchors.margins: 3
-                    color: "yellow"
+
+                    Image {
+                        id: thumb
+                        width: 80
+                        height: 60
+                        source: thumbnail
+                    }
+
                     Text {
-                        anchors.centerIn: parent
-                        text: index
+                        anchors.top: thumb.bottom
+                        anchors.topMargin: 1
+                        width: thumb.width
+                        elide: Text.ElideRight
+                        font.pixelSize: 10
+                        text: title
                     }
                 }
             }
