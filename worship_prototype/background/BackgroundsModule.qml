@@ -22,9 +22,34 @@ SplitView {
     }
 
     Rectangle {
-        id: bgThumbs
         width: parent.width * 0.5
         height: parent.height
         color: "#49e03e"
+
+        GridView {
+            id: bgThumbs
+            anchors.fill: parent
+            anchors.margins: 5
+
+            clip: true
+            model: 100
+            cellWidth: 83
+            cellHeight: 63
+
+            delegate: Item {
+                width: bgThumbs.cellWidth
+                height: bgThumbs.cellHeight
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: 3
+                    color: "yellow"
+                    Text {
+                        anchors.centerIn: parent
+                        text: index
+                    }
+                }
+            }
+        }
     }
 }
