@@ -16,11 +16,23 @@ Rectangle {
         loops: MediaPlayer.Infinite
     }
 
-    VideoOutput {
-        id: videoOutput
-        source: player
+    Item {
+        id: videoBackground
         anchors.fill: parent
-        fillMode: VideoOutput.PreserveAspectCrop
+        visible: false
+
+        VideoOutput {
+            id: videoOutput
+            source: player
+            anchors.fill: parent
+            fillMode: VideoOutput.PreserveAspectCrop
+        }
+    }
+
+    Image {
+        id: imageBackground
+        anchors.fill: parent
+        visible: false
     }
 
     Text {
@@ -68,9 +80,18 @@ Rectangle {
         lyrics.text = text;
     }
 
-    function playVideo(mediaUrl) {
+    function showVideoBackground(mediaUrl) {
+        imageBackground.visible = false;
+        videoBackground.visible = true;
         player.stop();
         player.source = mediaUrl;
         player.play();
+    }
+
+    function showImageBackground(mediaUrl) {
+        player.stop();
+        videoBackground.visible = false;
+        imageBackground.visible = true;
+        imageBackground.source = mediaUrl;
     }
 }

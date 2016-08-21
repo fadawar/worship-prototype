@@ -21,6 +21,10 @@ class Directory(ABC):
         """Returns parent directory"""
         pass
 
+    @abstractmethod
+    def path(self) -> str:
+        pass
+
 
 class RowAwareDirectory(Directory):
     @abstractmethod
@@ -49,6 +53,9 @@ class DefaultDirectory(RowAwareDirectory):
     def row(self):
         return self._row
 
+    def path(self):
+        return self._path
+
 
 class CachedDirectory(RowAwareDirectory):
     def __init__(self, directory: RowAwareDirectory):
@@ -72,3 +79,6 @@ class CachedDirectory(RowAwareDirectory):
 
     def row(self):
         return self._dir.row()
+
+    def path(self):
+        return self._dir.path()
