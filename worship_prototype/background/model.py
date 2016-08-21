@@ -1,14 +1,13 @@
 import os
 import re
 from typing import List
-import glob
 
 from PyQt5.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt
 from PyQt5.QtCore import QAbstractListModel
 
 from ..common import Directory, DefaultDirectory, CachedDirectory
-from ..config import IMAGE_PATTERN
-from .background import Background, ImageBackground
+from ..config import IMAGE_PATTERN, VIDEO_PATTERN
+from .background import Background, ImageBackground, VideoBackground
 
 
 class DirModel(QAbstractItemModel):
@@ -57,15 +56,17 @@ class BackgroundsModel(QAbstractListModel):
 
     def find_backgrounds_in(self, directory: Directory) -> List[Background]:
         self.beginResetModel()
-        self._backgrounds = [ImageBackground(img) for img in self._find_images_in(directory)]
+        self._backgrounds = \
+            [ImageBackground(img) for img in self._find_files_in(directory, IMAGE_PATTERN)] + \
+            [VideoBackground(vid) for vid in self._find_files_in(directory, VIDEO_PATTERN)]
         self.endResetModel()
 
-    def _find_images_in(self, directory: Directory):
-        images = []
+    def _find_files_in(self, directory: Directory, pattern):
+        files = []
         for x in os.listdir(directory.path()):
-            if re.match(IMAGE_PATTERN, x):
-                images.append(os.path.join(directory.path(), x))
-        return images
+            if re.match(pattern, x):
+                files.append(os.path.join(directory.path(), x))
+        return files
 
     def rowCount(self, parent=None, *args, **kwargs):
         return len(self._backgrounds)
